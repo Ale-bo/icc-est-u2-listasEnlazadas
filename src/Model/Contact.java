@@ -1,4 +1,5 @@
 package Model;
+import java.util.Objects;
 
 public class Contact {
     private String name;
@@ -9,30 +10,30 @@ public class Contact {
         this.phone = phone;
     }
 
-    public Contact(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contact)) return false;
+        Contact other = (Contact) o;
+        return Objects.equals(name, other.name) &&
+               Objects.equals(phone, other.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone);
     }
 
     @Override
     public String toString() {
-        return "Contact [name=" + name + ", phone=" + phone + "]";
+        return name + " – " + phone;
     }
-
 }
-
